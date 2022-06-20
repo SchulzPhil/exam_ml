@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:table-layout="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Predict</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+<body>
+<div>
+<form class="align-items-sm-center" method="POST">
+    {{ form.csrf_token }}
+    <ul class="form-container">
+        <li><div>Car brand</div>{{ form.company_name }}</li>
+        <li><div>Car model</div>{{ form.model }}</li>
+        <li><div>Fuel type</div>{{ form.fuelType }}</li>
+        <li><div>Transmission type</div>{{ form.transmission }}</li>
+        <li><div>Engine size</div>{{ form.engineSize }}</li>
+        <li><div>Mileage</div>{{ form.mileage }}</li>
+        <li><div>MPG</div>{{ form.mpg }}</li>
+        <li><div>Tax</div>{{ form.tax }}</li>
+        <li><div>Year</div>{{ form.year }}</li>
+        <li><div>Model version</div>{{ form.model_version }}</li>
+    </ul>
+  <button type="submit" class="form-button">Predict</button>
+    <style>
+        .form-container,
+        .form-container *{
+            box-sizing: border-box;
+        }
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 40px 30px 0px;
+            margin-bottom: 40px;
+            list-style: none;
+        }
+
+        .form-container li {
+            font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+            width: 33%;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-container div {
+            font-size: 16px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 10px 15px;
+            font-size: 16px;
+            line-height: 1.2;
+            font-family: inherit;
+            background-color: #fff;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .form-button {
+            position: relative;
+            margin-left: 50px;
+            font-size: 16px;
+            line-height: 1.2;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #fff;
+        }
+
+        .form-button:hover::after {
+            opacity: 1;
+        }
+
+        .form-button::after {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            color: white;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+    </style>
+</form>
+    </div>
+</body>
+</div>
+  <br>
+{% if result %}
+<div size="40%" class="alert alert-secondary" role="alert">
+    <h4 align="center">{{ result }} $</h4>
+</div>
+{% endif %}
+{% if form.errors %}
+    {% for k, v in form.errors.items() %}
+  <li>{{ k }} - {{ "".join(v) }}</li>
+    {% endfor %}
+{% endif %}
+</html>
