@@ -8,7 +8,7 @@ load_dotenv(dotenv_path="webapp/webapp.env")
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config['UPLOAD_FOLDER'] = os.getenv("UPLOAD_FOLDER")
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/filipp/PycharmProjects/exam_ml/webapp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
